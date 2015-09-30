@@ -5,7 +5,15 @@
     xmlns:local="using:RestaurantManager"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" >
+
+    <Page.TopAppBar>
+        <AppBar x:Name="ExpediteAppBar">
+            <AppBarButton x:Name="ExpediteAppBarHomeButton" 
+                          Icon="Home" Label="Home"
+                          Click="ExpediteAppBarHomeButton_Click"/>
+        </AppBar>
+    </Page.TopAppBar>    
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -15,20 +23,16 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical">
-            <AppBar x:Name="ExpediteAppBar" 
-                        Grid.Row="0"
-                        Grid.Column="0">
-                <AppBarButton x:Name="ExpediteAppBarHomeButton" Icon="Home" Label="Home"
-                              Click="ExpediteAppBarHomeButton_Click"/>
-            </AppBar>
-            <GridView x:Name="ExpediteGridView"
-                        Grid.Row="0" Grid.Column="0"/>
-        </StackPanel>
+        
+        <GridView x:Name="ExpediteGridView"
+            Grid.Row="0" Grid.Column="0" 
+            ItemsSource="{Binding Source={StaticResource DataManager}, Path=OrderItems}"/>
+
         <Button x:Name="ClearAllOrdersButton"
                    Foreground="White" 
                    Grid.Row="1" Grid.Column="0" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource RMButtonStyle}"
                    Content="Clear All Orders"/>
     </Grid>
 </Page>

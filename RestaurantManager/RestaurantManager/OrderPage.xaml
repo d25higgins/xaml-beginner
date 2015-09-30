@@ -7,6 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.TopAppBar>
+        <AppBar x:Name="OrderAppBar">
+            <AppBarButton x:Name="OrderAppBarHomeButton" Icon="Home" Label="Home"
+                            Click="OrderAppBarHomeButton_Click"/>
+        </AppBar>
+    </Page.TopAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
@@ -20,36 +27,36 @@
             <ColumnDefinition Width="0.25*"/>
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
-        <AppBar x:Name="OrderAppBar" 
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3">
-            <AppBarButton x:Name="OrderAppBarHomeButton" Icon="Home" Label="Home"
-                          Click="OrderAppBarHomeButton_Click"/>
-        </AppBar>
+
         <ListView x:Name="lv1"
-                  Grid.Row="1" Grid.RowSpan="3" Grid.Column="0"/>
+                  Grid.Row="1" Grid.RowSpan="3" Grid.Column="0"
+                  ItemsSource="{Binding Source={StaticResource DataManager}, Path=MenuItems}"/>
         <ListView x:Name="lv2"
-                  Grid.Row="2" Grid.RowSpan="2" Grid.Column="1"/>
+                  Grid.Row="2" Grid.RowSpan="2" Grid.Column="2"
+                  ItemsSource="{Binding Source={StaticResource DataManager}, Path=CuttentlySelectedMenuItems}"/>
         <TextBlock x:Name="SpecialRequestsHeading"
                    Foreground="White"
                    Grid.Row="1" Grid.Column="1" 
                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Style="{StaticResource RMTextBlockStyle}"
                    Text="Special Requests:"/>
         <TextBlock x:Name="OrderItemsHeading"
                    Foreground="White"
                    Grid.Row="1" Grid.Column="3" 
                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Style="{StaticResource RMTextBlockStyle}"
                    Text="Order Items:"/>
         <Button x:Name="AddToOrderButton"
                    Foreground="White"
                    Grid.Row="4" Grid.Column="0" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource RMButtonStyle}"
                    Content="Add to Order" Click="AddToOrderButton_Click" />
         <Button x:Name="SubmitOrderButton"
                    Foreground="White"
                    Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Style="{StaticResource RMButtonStyle}"
                    Content="Submit Order" Click="SubmitOrderButton_Click" />
     </Grid>
 </Page>
